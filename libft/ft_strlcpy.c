@@ -1,20 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: galtange <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/16 17:12:32 by galtange          #+#    #+#             */
-/*   Updated: 2021/12/16 18:25:31 by galtange         ###   ########.fr       */
+/*   Created: 2021/11/30 16:51:11 by galtange          #+#    #+#             */
+/*   Updated: 2021/12/20 21:04:20 by galtange         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putchar_fd(char c, int fd)
+size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 {
-	if (fd < 0)
-		return ;
-	write(fd, &c, 1);
+	size_t	len;
+
+	len = 0;
+	if (!dst || !src)
+		return (0);
+	if (size == 0)
+		return (ft_strlen(src));
+	while ((*(src + len) != '\0') && len < (size - 1))
+	{
+		*(dst + len) = *(src + len);
+		len++;
+	}
+	*(dst + len) = '\0';
+	return (ft_strlen(src));
 }

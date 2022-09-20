@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: galtange <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/12/16 16:30:52 by galtange          #+#    #+#             */
+/*   Updated: 2022/01/05 19:33:50 by galtange         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
 size_t	counting_c(const char *s, char c)
 {
 	size_t	line;
-	int	i;
+	int		i;
 
 	line = 0;
 	i = 0;
@@ -46,28 +58,28 @@ void	ft_free(char **ptr, size_t line)
 	free(ptr);
 }
 
-char	**ft_split(char const *str, char c)
+char	**ft_split(char const *s, char c)
 {
 	char	**result;
 	size_t	i;
 	size_t	line;
 
-	result = (char **)malloc((counting_c(str, c) + 1) * sizeof(char *));
-	if (!str || !result)
+	result = (char **)malloc((counting_c(s, c) + 1) * sizeof(char *));
+	if (!s || !result)
 		return (NULL);
 	i = 0;
 	line = 0;
-	while (line < counting_c(str, c) && str[i] != '\0')
+	while (line < counting_c(s, c) && s[i] != '\0')
 	{
-		while (str[i] == c)
+		while (s[i] == c)
 			i++;
-		result[line] = ft_substr(str, i, ft_end(&str[i], c));
+		result[line] = ft_substr(s, i, ft_end(&s[i], c));
 		if (!result[line])
 		{
 			ft_free(result, line);
 			return (NULL);
 		}
-		i = i + ft_end(&str[i], c);
+		i = i + ft_end(&s[i], c);
 		line++;
 	}
 	result[line] = NULL;

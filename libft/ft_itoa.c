@@ -1,32 +1,60 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: galtange <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/07 20:10:19 by galtange          #+#    #+#             */
-/*   Updated: 2021/12/30 20:45:01 by galtange         ###   ########.fr       */
+/*   Created: 2021/12/09 18:16:50 by galtange          #+#    #+#             */
+/*   Updated: 2022/01/04 20:49:18 by galtange         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+int	len(long int n)
 {
-	char	*substr;
-	size_t	i;
+	int	i;
 
 	i = 0;
-	if (ft_strlen(s) < start)
-		len = 0;
-	else if (ft_strlen(s) < start + len)
-		len = ft_strlen(s) - start;
-	substr = malloc ((len + 1) * sizeof(char));
-	if (!s || !substr)
+	if (n == 0)
+		return (1);
+	if (n < 0)
+	{
+		n = n * (-1);
+		i++;
+	}
+	while (n > 0)
+	{
+		n = n / 10;
+		i++;
+	}
+	return (i);
+}
+
+char	*ft_itoa(int nb)
+{
+	int			l;
+	char		*s;
+	long int	n;
+
+	n = nb;
+	l = len(nb);
+	s = malloc ((l + 1) * sizeof(char));
+	if (!s)
 		return (NULL);
-	while (i < len)
-		substr[i++] = s[start++];
-	substr[i] = '\0';
-	return (substr);
+	if (n == 0)
+		s[0] = 0 + '0';
+	s[l--] = '\0';
+	if (n < 0)
+	{
+		n = -n;
+		s[0] = '-';
+	}
+	while (n > 0)
+	{
+		s[l--] = (n % 10) + '0';
+		n = n / 10;
+	}
+	return (s);
 }
