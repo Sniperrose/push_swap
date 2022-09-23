@@ -7,11 +7,12 @@
 
 size_t	ft_strlen(const char *c);
 void	ft_putstr_fd(char *s, int fd);
-char	*ft_strjoin(char const *s1, char const *s2);
-char	*ft_joinall(int count, char **str);
-int	ft_size(int	count, char **str);
-char	**ft_split(char const *s, char c);
-void	ft_free(char **ptr, size_t line);
+long long	ft_atoi2(const char *nptr);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
+int	*ft_char2int(char **tmp, int size);
+int	ft_stralpha(char *str);
+int	ft_dupcheck(int *nbrs, int size);
+char	**ft_split2(int	size, char **nbrs);
+void	ft_free(char **ptr, size_t line);
 
 #endif

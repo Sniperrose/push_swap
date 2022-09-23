@@ -1,111 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: galtange <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/23 14:47:42 by galtange          #+#    #+#             */
+/*   Updated: 2022/09/23 14:48:05 by galtange         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/push_swap.h"
-
-int	ft_isalpha(char c)
-{
-	if (('a' <= c && c <= 'z') || ('A' <= c && c <= 'Z'))
-		return (1);
-	else
-		return (0);
-}
-
-long long	ft_atoi(const char *nptr)
-{
-	int		i;
-	int		sign;
-	long long	num;
-
-	i = 0;
-	num = 0;
-	sign = 1;
-
-
-	while ((nptr[i] > 7 && nptr[i] < 14) || (nptr[i] == 32))
-		i++;
-	while (nptr[i] == '-' || nptr[i] == '+')
-	{
-		if (nptr[i] == '-')
-			sign = -1 * sign;
-		i++;
-	}
-	while ('0' <= nptr[i] && nptr[i] <= '9')
-	{
-		num = 10 * num + (nptr[i] - '0');
-		i++;
-	}
-	return (num * sign);
-}
-
-int	*ft_char2int(char **tmp, int size)
-{
-	int	i = 0;
-	int	*nbrs;
-	long long	nb = 0;	
-
-	nbrs = (int *)malloc(size * sizeof(int));
-	if (!nbrs || !tmp)
-		return (NULL);
-	while (tmp[i] && i < size)
-	{
-		nb = ft_atoi(tmp[i]);
-		if (nb > 2147483647 || nb < -2147483648)
-		{
-			free(nbrs);
-			return (NULL);
-		}
-		nbrs[i] = (int)nb;
-		i++;
-	}
-	return (nbrs);
-}
-
-char	**ft_split2(int	size, char **nbrs)
-{
-	char	**result;
-	int	line;
-
-	result = (char **)malloc((size + 1) * sizeof(char *));
-	if (!nbrs || !result)
-		return(NULL);
-	line = 0;
-	while (line < size)
-	{
-		result[line] = ft_substr(nbrs[line], 0, ft_strlen(nbrs[line]));
-		if (!result[line] || ft_isalpha(result[line][0]))
-		{
-			ft_free(result, line);
-			return (NULL);
-		}
-		line++;
-	}
-	result[line] = NULL;
-	return (result);
-}
-
-int	ft_dupcheck(int *nbrs, int size)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while(i < size)
-	{
-		j = i + 1;
-		while (j < size)
-		{
-			if (nbrs[i] == nbrs[j])
-				return 0;
-			j++;
-		}
-		i++;
-	}
-	return (1);
-}
 
 int main (int argc, char **argv)
 {
 	char	**all;
 	int	*nbrs;
-	int	i = 0;
+	int	i;
 	
 	if (argc >= 1)
 	{
