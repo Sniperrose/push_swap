@@ -12,6 +12,18 @@
 
 #include "../include/push_swap.h"
 
+void	push(int value)
+{
+	struct Node	*newNode;
+	newNode = (struct Node *)malloc(sizeif(struct Node));
+	newNode->data = value;
+	if(top == NULL)
+		newNode->next = NULL;
+	else
+		newNode->next = top;
+	top = newNode;
+}
+
 int main (int argc, char **argv)
 {
 	char	**all;
@@ -29,9 +41,15 @@ int main (int argc, char **argv)
 		i = 0;
 		while (i < (argc - 1))
 			printf("%d\n", nbrs[i++]);
-		free(nbrs);
 		ft_free(all, i);
 	}
+	printf("struct test!\n");
+	while(i > 0)
+	{
+		push(nbrs[i]);
+		i--;
+	}
+	free(nbrs);
 }
 
 /* ver2

@@ -5,6 +5,13 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+struct  Node
+{
+    int data;
+    struct Node *next;
+};
+Node*   top = NULL;
+
 size_t	ft_strlen(const char *c);
 void	ft_putstr_fd(char *s, int fd);
 long long	ft_atoi2(const char *nptr);
