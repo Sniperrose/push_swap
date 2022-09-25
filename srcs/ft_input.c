@@ -14,14 +14,14 @@
 
 int	*ft_char2int(char **tmp, int size)
 {
-	int			i;
+	int			i = 0;
 	int			*nbrs;
 	long long	nb;	
 
 	i = 0;
 	nb = 0;
 	nbrs = (int *)malloc(size * sizeof(int));
-	if (!nbrs || !tmp)
+	if (!nbrs)
 		return (NULL);
 	while (tmp[i] && i < size)
 	{
