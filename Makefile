@@ -2,8 +2,8 @@ NAME = push_swap
 
 SRCS = srcs/main.c\
        srcs/ft_input.c\
-       srcs/ft_pushswap.c\
-	   srcs/ft_atoi2.c
+	   srcs/ft_atoi2.c\
+	   srcs/stack_op.c
 
 INCLUDE = includes
 
