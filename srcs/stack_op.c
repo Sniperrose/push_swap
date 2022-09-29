@@ -1,15 +1,27 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   stack_op.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: galtange <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/29 20:33:17 by galtange          #+#    #+#             */
+/*   Updated: 2022/09/29 20:33:19 by galtange         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/push_swap.h"
 
-t_list	*ft_lstnew(int	content)
+t_list	*ft_lstnew(int content)
 {
-	t_list	*newNode;
+	t_list	*newnode;
 
-	newNode = (t_list *)malloc(sizeof(t_list));
-	if (!newNode)
+	newnode = (t_list *)malloc(sizeof(t_list));
+	if (!newnode)
 		return (0);
-	newNode->content = content;
-	newNode->next = NULL;
-	return (newNode);
+	newnode->content = content;
+	newnode->next = NULL;
+	return (newnode);
 }
 
 void	ft_lstadd_front(t_list **lst, t_list *new)
@@ -17,21 +29,21 @@ void	ft_lstadd_front(t_list **lst, t_list *new)
 	if (!*lst)
 	{
 		*lst = new;
-		return;
+		return ;
 	}
 	if (!new)
-		return;
+		return ;
 	new->next = *lst;
 	*lst = new;
 }
 
 int	ft_lstsize(t_list *lst)
 {
-	int	size;
+	int		size;
 	t_list	*tmp;
 
 	size = 0;
-	if(!lst)
+	if (!lst)
 		return (0);
 	tmp = lst;
 	while (tmp != NULL)
@@ -45,8 +57,9 @@ int	ft_lstsize(t_list *lst)
 void	display(t_list *list)
 {
 	t_list	*tmp;
-	int	nbr = 0;
+	int		nbr;
 
+	nbr = 0;
 	tmp = list;
 	while (tmp != NULL)
 	{

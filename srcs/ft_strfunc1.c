@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_strs.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: galtange <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -55,4 +55,42 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	}
 	substr[i] = '\0';
 	return (substr);
+}
+
+char	**ft_strjoinall(char **nbrs)
+{
+	char	*all;
+	char	**result;
+	int		i;
+
+	i = 0;
+	all = ft_substr(nbrs[i], 0, ft_strlen(nbrs[i]));
+	if (!all || !ft_stralpha(all))
+		return (NULL);
+	i++;
+	while (nbrs[i])
+	{
+		all = ft_strjoin(all, nbrs[i]);
+		if (!all)
+			return (NULL);
+		i++;
+	}
+	result = ft_split(all, ' ');
+	if (!result)
+	{
+		free(all);
+		return (NULL);
+	}
+	free(all);
+	return (result);
+}
+
+int	line(char **result)
+{
+	int	size;
+
+	size = 0;
+	while (result[size])
+		size++;
+	return (size);
 }
