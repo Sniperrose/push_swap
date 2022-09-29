@@ -1,47 +1,106 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: galtange <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/23 14:47:42 by galtange          #+#    #+#             */
-/*   Updated: 2022/09/23 14:48:05 by galtange         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "../include/push_swap.h"
 
-int	ft_size(char **nbrs)
+void	ft_pushswap(int	*nbrs, int size)
 {
+	t_list	*stack_a;
+	t_list	*stack_b;
+	int	i;
+
+	stack_a = NULL;
+	stack_b = NULL;
+	i = size - 1;
+	while (i >= 0)
+	{
+		ft_lstadd_front(&stack_a, ft_lstnew(nbrs[i--]));
+	}
+	display(stack_a);
+	printf("---after sa---\n size = %d\n", ft_lstsize(stack_a));
+	ft_sa(&stack_a);
+	display(stack_a);
+	printf("---after sb---\n");
+	ft_sb(&stack_b);
+	display(stack_b);
+	ft_ss(&stack_a, &stack_b);
+	printf("---ss--\n");
+	display(stack_a);
+	display(stack_b);
+	printf("---pb---\n");
+	ft_pb(&stack_a, &stack_b);
+	display(stack_a);
+	display(stack_b);
+	printf("---pa---\n");
+	ft_pa(&stack_a, &stack_b);
+	display(stack_a);
+	display(stack_b);
+	printf("---rotate---\n");
+	ft_rotate(&stack_a);
+	display(stack_a);
+	printf("---reverse---\n");
+	ft_reverse(&stack_a);
+	display(stack_a);
+}
+
+char	**ft_strjoinall(char **nbrs)
+{
+	char	*all;
+	char	**result;
 	int	i;
 
 	i = 0;
-	while(*nbrs != NULL)
+	all = ft_substr(nbrs[i], 0, ft_strlen(nbrs[i]));
+	if (!all || !ft_stralpha(all))
+		return (NULL);
+	i++;
+	while (nbrs[i])
 	{
+		all = ft_strjoin(all, nbrs[i]);
+		if (!all)
+			return (NULL);
 		i++;
-		nbrs++;
 	}
-	return (i);
+	if (!(result = ft_split(all, ' ')))
+	{
+		free(all);
+		return (NULL);
+	}
+	free(all);
+	return (result);
+}
+
+int	line(char **result)
+{
+	int	size;
+
+	size = 0;
+	while (result[size])
+		size++;
+	return (size);
 }
 
 int main (int argc, char **argv)
 {
-	char	**all;
+	char		**result;
 	int	*nbrs;
-	int	size = 0;
-	
+	int	size;
+
 	nbrs = NULL;
-	if (argc != 1)
+	result = NULL;
+	if (argc > 1)
 	{
-		all = ft_split2(argc - 1, argv + 1);
-		if (!all)
-			return (write(1, "Error\n", 6));
-		nbrs = ft_char2int(all, size = ft_size(all));
-		if (!nbrs || !ft_dupcheck(nbrs, size))
-			return (write(1, "Error\n", 6));
-		ft_free(all, size);
-		push_swap(nbrs, size);
+		if (!(result = ft_strjoinall(argv + 1)))
+		{
+			ft_putstr_fd("error_str\n", 1);
+			return (0);
+		}
+		nbrs = ft_char2int(&result[0], size = line(result));
+		if (!size || !ft_dupcheck(nbrs, size) || !nbrs)
+		{
+			printf("error in size\n");
+			return (0);
+		}
+		ft_pushswap(nbrs, size);
 		free(nbrs);
+		ft_free(result, size);
 	}
+	return (0);
 }

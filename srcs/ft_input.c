@@ -46,13 +46,9 @@ int	ft_stralpha(char *s)
 		i++;
 	while (s[i] == '-' || s[i] == '+')
 		i++;
-	while (s[i])
-	{
-		if (('a' <= s[i] && s[i] <= 'z') || ('A' <= s[i] && s[i] <= 'Z'))
-			return (1);
-		i++;
-	}
-	return (0);
+	if (('a' <= s[i] && s[i] <= 'z') || ('A' <= s[i] && s[i] <= 'Z'))
+			return (0);
+	return (1);
 }
 
 int	ft_dupcheck(int *nbrs, int size)
@@ -74,7 +70,7 @@ int	ft_dupcheck(int *nbrs, int size)
 	}
 	return (1);
 }
-
+/*
 char	**ft_split2(int size, char **nbrs)
 {
 	char	**result;
@@ -97,7 +93,32 @@ char	**ft_split2(int size, char **nbrs)
 	result[line] = NULL;
 	return (result);
 }
+*/
 
+char	**ft_split2(int size, char **nbrs)
+{
+	char	*all_nbrs;
+	char	**result;
+	int	line;
+
+	line = 0;
+	all_nbrs = NULL;
+	result = NULL;
+	while (line < size && nbrs[line])
+	{
+		all_nbrs = ft_strjoin(all_nbrs, nbrs[line]);
+		if (!all_nbrs)
+			return (NULL);
+		line++;
+	}
+	printf("test: %s\n", all_nbrs);
+	result = ft_split(all_nbrs, ' ');
+	free (all_nbrs);
+	if (!result)
+		return (NULL);
+	return (result);
+}
+/*
 void	ft_free(char **ptr, size_t line)
 {
 	while (0 < line)
@@ -106,4 +127,4 @@ void	ft_free(char **ptr, size_t line)
 		line--;
 	}
 	free(ptr);
-}
+}*/

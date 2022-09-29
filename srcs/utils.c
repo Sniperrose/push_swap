@@ -49,8 +49,10 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	substr = malloc ((len + 1) * sizeof(char));
 	if (!s || !substr)
 		return (NULL);
-	while (i < len)
+	while (i < len && s)
+	{
 		substr[i++] = s[start++];
+	}
 	substr[i] = '\0';
 	return (substr);
 }

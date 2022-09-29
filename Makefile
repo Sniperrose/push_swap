@@ -1,10 +1,15 @@
 NAME = push_swap
 
-SRCS = srcs/main.c\
+SRCS =	srcs/main.c\
+	srcs/ft_split.c\
+	srcs/ft_strjoin.c\
        srcs/ft_input.c\
 	   srcs/ft_atoi2.c\
 	   srcs/stack_op.c\
-	   srcs/push_swap.c
+	   srcs/ft_stack_a.c\
+	   srcs/ft_stack_b.c\
+	   srcs/ft_stack_both.c\
+	   srcs/push_swap.c\
 
 INCLUDE = includes
 
