@@ -42,5 +42,9 @@ void    ft_ra(t_list **stack_a);
 void    ft_rb(t_list **stack_b);
 void    ft_rr(t_list **stack_a, t_list **stack_b);
 void    ft_revrotate(t_list **list);
+void	ft_rra(t_list **stack_a);
+void	ft_rrb(t_list **stack_b);
+void	ft_rrr(t_list **stack_a, t_list **stack_b);
+void	ft_median(t_list **stack, int size);
 
 #endif
