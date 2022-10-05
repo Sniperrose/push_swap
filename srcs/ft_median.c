@@ -1,21 +1,60 @@
 #include "../include/push_swap.h"
 
-int	ft_med(int *tmp, int size)
+void ft_swap_nbr(int *a, int *b)
 {
+	int	tmp;
 
-
-	return (max);
+	tmp = *a;
+	*a = *b;
+	*b = tmp;
 }
 
-void	ft_median(t_list **stack, int size)
+int	ft_med(int *tmp, int size)
 {
-	int	med;
-	int	*tmp;
+	int	i;
+	int	j;
 
-	tmp = malloc(size * sizeof(int));
-	if (!*stack || !stack || !tmp)
-		return ;
-	printf("median test\n");
-	med = ft_med(tmp, size);
-	printf("med = %d\n", med);
+	i = 0;
+	while (i < size)
+	{
+		j = i + 1;
+		while (j < size)
+		{
+			if (tmp[i] > tmp[j])
+				ft_swap_nbr(&tmp[i], &tmp[j]);
+			j++;
+		}
+		i++;
+	}
+	// printf("sorted area : ");
+	// i = 0;
+	// while (i < size)
+	// {
+	// 	printf("%d->", tmp[i]);
+	// 	i++;
+	// }
+	// printf("NULL\n");
+	
+	return (tmp[size/2]);
+}
+
+int	ft_median(t_list **stack, int size)
+{
+	int	i;
+	int	nbrs[size];
+	int med;
+	t_list	*tmp;
+	
+	if (!*stack || !stack)
+		return (0);
+	tmp = *stack;
+	i = 0;
+	while (i < size)
+	{
+		nbrs[i] = tmp->content;
+		tmp = tmp->next;
+		i++;
+	}
+	med = ft_med(&nbrs[0], size);
+	return (med);
 }

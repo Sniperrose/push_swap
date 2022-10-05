@@ -11,7 +11,8 @@ SRCS =	srcs/main.c\
 		srcs/ft_rotate.c\
 		srcs/ft_revrotate.c\
 		srcs/stack_op.c\
-		srcs/ft_median.c
+		srcs/ft_median.c\
+		srcs/ft_sort_part1.c
 
 INCLUDE = includes
 
