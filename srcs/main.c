@@ -12,31 +12,24 @@
 
 #include "../include/push_swap.h"
 
+int	g_cntr;
+
 int	main(int argc, char **argv)
 {
-	char	**result;
-	int		*nbrs;
-	int		size;
+	int result[10000];
+	int size;
+    int i;
 
-	nbrs = NULL;
-	result = NULL;
-	if (argc > 1)
-	{
-		result = ft_strjoinall(argv + 1);
-		if (!result)
-		{
-			ft_putstr_fd("error_str\n", 1);
-			return (0);
-		}
-		nbrs = ft_char2int(&result[0], size = line(result));
-		if (!size || !ft_dupcheck(nbrs, size) || !nbrs)
-		{
-			printf("error in size\n");
-			return (0);
-		}
-		ft_pushswap(nbrs, size);
-		ft_free(result, size);
-		free(nbrs);
-	}
+	g_cntr = 0;
+	i = 0;
+	size = 0;
+	if (argc <= 1)
+		return (0);
+	else
+		ft_joinall(argv + 1, &result[0], &size);
+	// while(i < size)
+	// 	printf("%d\n", result[i++]);
+	ft_pushswap(&result[0], size);
+	printf("cntr is : %d\n", g_cntr);
 	return (0);
 }

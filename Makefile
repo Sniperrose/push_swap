@@ -2,17 +2,16 @@ NAME = push_swap
 
 SRCS =	srcs/main.c\
 		srcs/ft_atoi2.c\
-		srcs/ft_strjoin.c\
-		srcs/ft_strfunc1.c\
-		srcs/ft_strfunc2.c\
+		srcs/ft_getnbrs.c\
 		srcs/push_swap.c\
-		srcs/ft_swap.c\
-		srcs/ft_push.c\
-		srcs/ft_rotate.c\
-		srcs/ft_revrotate.c\
-		srcs/stack_op.c\
 		srcs/ft_median.c\
-		srcs/ft_sort_part1.c
+		srcs/ft_push.c\
+		srcs/ft_revrotate.c\
+		srcs/ft_rotate.c\
+		srcs/ft_sort_part1.c\
+		srcs/ft_sort_part2.c\
+		srcs/ft_stacks.c\
+		srcs/ft_swap.c
 
 INCLUDE = includes
 

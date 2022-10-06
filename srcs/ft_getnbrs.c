@@ -12,28 +12,56 @@
 
 #include "../include/push_swap.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+void    ft_error(int *nbr, int i)
 {
-	char	*str;
-	size_t	i;
-	size_t	len;
+    while (--i >= 0)
+        nbr[i] = 0;
+    printf ("Error\n");
+    exit(0);
+}
 
-	str = malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
-	if (str == NULL || !ft_stralpha((char *)s2))
-		return (0);
+int	ft_duplicated(int *nbrs, int size)
+{
+	int	i;
+	int	j;
+
 	i = 0;
-	while (s1[i] != '\0')
+	while (i < size)
 	{
-		str[i] = s1[i];
+		j = i + 1;
+		while (j < size)
+		{
+			if (nbrs[i] == nbrs[j])
+				return (1);
+			j++;
+		}
 		i++;
 	}
-	str[i++] = ' ';
-	len = 0;
-	while (s2[len] != '\0')
-	{
-		str[i + len] = s2[len];
-		len++;
-	}
-	str[i + len] = '\0';
-	return (str);
+	return (0);
+}
+
+void    ft_joinall(char **argv, int *nbrs, int *size)
+{
+    int i;
+	int	line;
+	long long	nb;
+    
+	i = 0;
+	line = 0;
+	if (!argv || !*argv)
+        return ;
+    while (argv[i])
+    {
+        if (ft_isalpha(argv[i][0]))
+            ft_error(nbrs, line);
+        nb = ft_atoi2(argv[i]);
+        if (nb > 2147483647 || nb < -2147483648)
+            ft_error(nbrs, line);
+        nbrs[line] = (int)nb;
+        i++;
+		line++;
+    }
+	*size = line;
+    if (ft_duplicated(nbrs, line))
+        ft_error(nbrs, line);
 }

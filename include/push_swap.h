@@ -5,31 +5,29 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+extern int g_cntr;
+
 typedef struct	s_list
 {
 	int		content;
 	struct s_list	*next;
 }	t_list;
 
-
 size_t	ft_strlen(const char *c);
-void	ft_putstr_fd(char *s, int fd);
-char	*ft_substr(char const *s, unsigned int start, size_t len);
-char	**ft_strjoinall(char **nbrs);
-int	line(char **result);
+int	ft_isalpha(char c);
 long long	ft_atoi2(const char *nptr);
-int	*ft_char2int(char **tmp, int size);
-int	ft_stralpha(char *str);
-int	ft_dupcheck(int *nbrs, int size);
-char	**ft_split(char const *s, char c);
-char	**ft_split2(int size, char **nbrs);
-char	*ft_strjoin(char const *s1, char const *s2);
-void	ft_free(char **ptr, size_t line);
+void    ft_joinall(char **argv, int *nbrs, int *size);
+int	ft_duplicated(int *nbrs, int size);
+void    ft_error(int *nbr, int i);
+void	ft_putstr_fd(char *s, int fd);
+void	ft_putchar_fd(char c, int fd);
 void    ft_pushswap(int *nbrs, int size);
 void    display(t_list *list);
 t_list	*ft_lstnew(int content);
+t_list	*ft_newstack(int *nbrs, int size);
 void	ft_lstadd_front(t_list **lst, t_list *new);
 int	ft_lstsize(t_list *lst);
+void	free_stack(t_list **list);
 void    ft_swap(t_list **list);
 void    ft_sa(t_list **stack_a);
 void    ft_sb(t_list **stack_b);
@@ -52,5 +50,6 @@ void	ft_min_max(t_list **stack, int *min, int *max);
 void	ft_sort_3(t_list **stack);
 void	ft_sort_4(t_list **stack_a, t_list **stack_b, int med);
 void	ft_sort_5(t_list **stack_a, t_list **stack_b, int med);
+void	ft_sort(t_list **stack_a, t_list **stack_b, int med);
 
 #endif

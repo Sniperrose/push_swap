@@ -26,15 +26,6 @@ int	ft_med(int *tmp, int size)
 		}
 		i++;
 	}
-	// printf("sorted area : ");
-	// i = 0;
-	// while (i < size)
-	// {
-	// 	printf("%d->", tmp[i]);
-	// 	i++;
-	// }
-	// printf("NULL\n");
-	
 	return (tmp[size/2]);
 }
 

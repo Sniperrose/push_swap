@@ -69,3 +69,17 @@ void	display(t_list *list)
 	}
 	printf("NULL\n");
 }
+
+void	free_stack(t_list **list)
+{
+	t_list	*tmp;
+
+	if (!*list || !list)
+		return;
+	while (*list != NULL)
+	{
+		tmp = (*list)->next;
+		free(*list);
+		*list = tmp;
+	}
+}

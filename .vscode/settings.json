@@ -1,6 +1,8 @@
 {
     "files.associations": {
         "push_swap.h": "c",
-        "old_ver": "c"
+        "old_ver": "c",
+        "limits": "c",
+        "unistd.h": "c"
     }
 }
