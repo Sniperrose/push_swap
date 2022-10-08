@@ -27,17 +27,15 @@ void    ft_medianbig(t_list **stack, int *min, int *max, int *medians)
     i = 0;
     while (i < size)
     {
-        nbrs[i] = tmp->content;
+        nbrs[i++] = tmp->content;
         tmp = tmp->next;
-        i++;
     }
     nbrs = ft_sort_nbrs(&nbrs[0], size);
     *min = nbrs[0];
     *max = nbrs[i - 1];
     medians[0] = nbrs[size/4];
     medians[1] = nbrs[size/2];
-    size = size/2 + size/4;
-    medians[2] = nbrs[size];
+    medians[2] = nbrs[size/2 + size/4];
     free (nbrs);
 }
 
@@ -87,28 +85,22 @@ void	ft_algo_lefttest(t_list **stack_a, t_list **stack_b, int min, int max)
 		ft_ra(stack_a);
 }
 
-// void	ft_algo_righttest(t_list **stack_a, t_list **stack_b, int med)
-// {
-// 	t_list	*tmp;
+void	ft_sort_last(t_list **stack_a, t_list **stack_b, int med)
+{
+	t_list	*tmp;
 
-// 	tmp = *stack_a;
-// 	while (tmp->content > med)
-// 	{
-// 		*stack_a = (*stack_a)->next;
-// 		ft_pb(&tmp, stack_b);
-// 		tmp = *stack_a;
-// 	}
-// 	while (*stack_b != NULL)
-// 		ft_push_backtest(stack_a, stack_b);
-// 	while ((*stack_a)->content > med)
-// 		ft_ra(stack_a);
-// }
-
-// void	ft_sort_test(t_list **s_a, t_list **s_b, int min, int max)
-// {
-// 	ft_algo_lefttest(s_a, s_b, min, max);
-// 	// ft_algo_righttest(stack_a, stack_b, med);
-// }
+	tmp = *stack_a;
+	while (tmp->content > med)
+	{
+		*stack_a = (*stack_a)->next;
+		ft_pb(&tmp, stack_b);
+		tmp = *stack_a;
+	}
+	while (*stack_b != NULL)
+		ft_push_backtest(stack_a, stack_b);
+	while ((*stack_a)->content > med)
+		ft_ra(stack_a);
+}
 
 void	ft_sort_big(t_list **stack_a, t_list **stack_b)
 {
@@ -125,6 +117,5 @@ void	ft_sort_big(t_list **stack_a, t_list **stack_b)
     ft_algo_lefttest(stack_a, stack_b, min, medians[0]);
     ft_algo_lefttest(stack_a, stack_b, medians[0], medians[1]);
     ft_algo_lefttest(stack_a, stack_b, medians[1], medians[2]);
-    ft_sort(stack_a, stack_b, medians[2]);
-    printf("min = %d, max = %d, m1 = %d, m2 = %d, m3 = %d\n", min, max, medians[0], medians[1], medians[2]);
+    ft_sort_last(stack_a, stack_b, medians[2]);
 }

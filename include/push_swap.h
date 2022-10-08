@@ -16,7 +16,7 @@ typedef struct	s_list
 size_t	ft_strlen(const char *c);
 int	ft_isalpha(char c);
 long long	ft_atoi2(const char *nptr);
-void    ft_joinall(char **argv, int *nbrs, int *size);
+int	*ft_joinall(char **argv, int *size);
 int	ft_duplicated(int *nbrs, int size);
 void    ft_error(int *nbr, int i);
 void	ft_putstr_fd(char *s, int fd);

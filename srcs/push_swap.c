@@ -55,10 +55,10 @@ void	ft_pushswap(int	*nbrs, int size)
 	else
 		ft_sort_big(&stack_a, &stack_b);
 
-			printf("stack_a: ");		
-				display(stack_a);
-			printf("stack_b: ");	
-				display(stack_b);
+			// printf("stack_a: ");		
+			// 	display(stack_a);
+			// printf("stack_b: ");	
+			// 	display(stack_b);
 	free_stack(&stack_a);
 	free_stack(&stack_b);
 }

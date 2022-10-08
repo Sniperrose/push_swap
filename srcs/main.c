@@ -16,20 +16,21 @@ int	g_cntr;
 
 int	main(int argc, char **argv)
 {
-	int result[10000];
+	int *result;
 	int size;
     int i;
 
 	g_cntr = 0;
-	i = 0;
 	size = 0;
+	result = NULL;
 	if (argc <= 1)
 		return (0);
 	else
-		ft_joinall(argv + 1, &result[0], &size);
-	// while(i < size)
-	// 	printf("%d\n", result[i++]);
-	ft_pushswap(&result[0], size);
-	printf("cntr is : %d\n", g_cntr);
+		result = ft_joinall(argv + 1, &size);
+	// ft_pushswap(&result[0], size);
+	i = 0;
+	while (i < size)
+		printf("%d", result[i++]);
+	free(result);
 	return (0);
 }

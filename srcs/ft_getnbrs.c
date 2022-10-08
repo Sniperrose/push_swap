@@ -16,7 +16,7 @@ void	ft_error(int *nbr, int i)
 {
 	while (--i >= 0)
 		nbr[i] = 0;
-	printf ("Error\n");
+	printf ("error\n");
 	exit(0);
 }
 
@@ -40,28 +40,73 @@ int	ft_duplicated(int *nbrs, int size)
 	return (0);
 }
 
-void	ft_joinall(char **argv, int *nbrs, int *size)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	long long	nb;
-	int			i;
-	int			line;
+	char	*str;
+	size_t	i;
+	size_t	len;
 
+	if (!s1)
+		str = malloc((ft_strlen(s2) + 1) * sizeof(char));
+	else
+		str = malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
+	if (str == NULL)
+		return (0);
 	i = 0;
-	line = 0;
+	while (s1[i] != '\0')
+	{
+		str[i] = s1[i];
+		i++;
+	}
+	len = 0;
+	while (s2[len] != '\0')
+	{
+		str[i + len] = s2[len];
+		len++;
+	}
+	str[i + len] = '\0';
+	return (str);
+}
+
+char	*ft_strdup(const char *s)
+{
+	char	*dup;
+	char	*str;
+	int		i;
+
+	str = (char *)s;
+	i = 0;
+	dup = malloc((ft_strlen(s) + 1) * sizeof(char));
+	if (dup == NULL)
+		return (NULL);
+	while (str[i] != '\0')
+	{
+		dup[i] = str[i];
+		i++;
+	}
+	dup[i] = '\0';
+	return (dup);
+}
+
+int	*ft_joinall(char **argv, int *size)
+{
+	char	*all;
+	int		*nbrs = NULL;
+	int		i = 0;
+
 	if (!argv || !*argv)
-		return ;
+		return (NULL);
+	all = ft_strdup(argv[i]);
+	if (!all)
+		return (NULL);
+	i++;
 	while (argv[i])
 	{
-		if (ft_isalpha(argv[i][0]))
-			ft_error(nbrs, line);
-		nb = ft_atoi2(argv[i]);
-		if (nb > 2147483647 || nb < -2147483648)
-			ft_error(nbrs, line);
-		nbrs[line] = (int)nb;
+		all = ft_strjoin(all, argv[i]);
 		i++;
-		line++;
 	}
-	*size = line;
-	if (ft_duplicated(nbrs, line))
-		ft_error(nbrs, line);
+	nbrs[0] = ft_atoi2(all);
+	*size = i;
+	free (all);
+	return(&nbrs[0]);
 }
