@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: galtange <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/10/08 12:52:12 by galtange          #+#    #+#             */
+/*   Updated: 2022/10/08 12:52:13 by galtange         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/push_swap.h"
 
 t_list	*ft_newstack(int *nbrs, int size)
@@ -26,7 +38,10 @@ void	ft_pushswap(int	*nbrs, int size)
 		return;
 	stack_b = NULL;
 	if (ft_alreadysorted(&stack_a) == 1)
+	{
+		printf("sorted!\n");
 		return;
+	}
 	else if (size == 2)
 		ft_sa(&stack_a);
 	else if (size == 3)
@@ -35,10 +50,10 @@ void	ft_pushswap(int	*nbrs, int size)
 		ft_sort_4(&stack_a, &stack_b, ft_median(&stack_a, 4));
 	else if (size == 5)
 		ft_sort_5(&stack_a, &stack_b, ft_median(&stack_a, 5));
-	else if (size <= 500)
+	else if (size <= 100)
 		ft_sort(&stack_a, &stack_b, ft_median(&stack_a, size));
 	else
-		ft_putstr_fd("not yet\n", 1);
+		ft_sort_big(&stack_a, &stack_b);
 
 			printf("stack_a: ");		
 				display(stack_a);

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack_op.c                                         :+:      :+:    :+:   */
+/*   ft_stacks.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: galtange <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 20:33:17 by galtange          #+#    #+#             */
-/*   Updated: 2022/09/29 20:33:19 by galtange         ###   ########.fr       */
+/*   Updated: 2022/10/08 12:50:28 by galtange         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	display(t_list *list)
 	while (tmp != NULL)
 	{
 		nbr = tmp->content;
-		printf("|%d|->", nbr);
+		printf("%d ", nbr);
 		tmp = tmp->next;
 	}
 	printf("NULL\n");
@@ -75,7 +75,9 @@ void	free_stack(t_list **list)
 	t_list	*tmp;
 
 	if (!*list || !list)
-		return;
+	{
+		return ;
+	}
 	while (*list != NULL)
 	{
 		tmp = (*list)->next;

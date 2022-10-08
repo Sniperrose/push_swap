@@ -44,12 +44,14 @@ void	ft_rra(t_list **stack_a);
 void	ft_rrb(t_list **stack_b);
 void	ft_rrr(t_list **stack_a, t_list **stack_b);
 void ft_swap_nbr(int *a, int *b);
+int	*ft_sort_nbrs(int *tmp, int size);
 int	ft_median(t_list **stack, int size);
 int	ft_alreadysorted(t_list **stack);
-void	ft_min_max(t_list **stack, int *min, int *max);
 void	ft_sort_3(t_list **stack);
 void	ft_sort_4(t_list **stack_a, t_list **stack_b, int med);
 void	ft_sort_5(t_list **stack_a, t_list **stack_b, int med);
 void	ft_sort(t_list **stack_a, t_list **stack_b, int med);
+int     ft_minmax(t_list **sb, int *flag_ra, int *flag_rrb);
+void	ft_sort_big(t_list **stack_a, t_list **stack_b);
 
 #endif

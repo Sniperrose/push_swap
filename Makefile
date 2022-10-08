@@ -8,10 +8,12 @@ SRCS =	srcs/main.c\
 		srcs/ft_push.c\
 		srcs/ft_revrotate.c\
 		srcs/ft_rotate.c\
-		srcs/ft_sort_part1.c\
-		srcs/ft_sort_part2.c\
+		srcs/ft_sort_small.c\
+		srcs/ft_sort_mid.c\
+		srcs/ft_sort_big.c\
 		srcs/ft_stacks.c\
-		srcs/ft_swap.c
+		srcs/ft_swap.c\
+		srcs/ft_minmax.c
 
 INCLUDE = includes
 

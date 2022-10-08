@@ -6,7 +6,7 @@
 /*   By: galtange <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 20:38:55 by galtange          #+#    #+#             */
-/*   Updated: 2022/09/29 20:51:53 by galtange         ###   ########.fr       */
+/*   Updated: 2022/10/08 12:51:46 by galtange         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,5 @@ void	ft_ss(t_list **stack_a, t_list **stack_b)
 	ft_swap(stack_a);
 	ft_swap(stack_b);
 	ft_putstr_fd("ss\n", 1);
-	g_cntr++;	
+	g_cntr++;
 }

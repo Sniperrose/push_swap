@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_median.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: galtange <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/10/08 11:45:22 by galtange          #+#    #+#             */
+/*   Updated: 2022/10/08 11:45:31 by galtange         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/push_swap.h"
 
-void ft_swap_nbr(int *a, int *b)
+void	ft_swap_nbr(int *a, int *b)
 {
 	int	tmp;
 
@@ -9,7 +21,7 @@ void ft_swap_nbr(int *a, int *b)
 	*b = tmp;
 }
 
-int	ft_med(int *tmp, int size)
+int	*ft_sort_nbrs(int *tmp, int size)
 {
 	int	i;
 	int	j;
@@ -26,17 +38,18 @@ int	ft_med(int *tmp, int size)
 		}
 		i++;
 	}
-	return (tmp[size/2]);
+	return (&tmp[0]);
 }
 
 int	ft_median(t_list **stack, int size)
 {
-	int	i;
-	int	nbrs[size];
-	int med;
+	int		i;
+	int		*nbrs;
+	int		med;
 	t_list	*tmp;
-	
-	if (!*stack || !stack)
+
+	nbrs = malloc(size * sizeof(int));
+	if (!*stack || !stack || !nbrs)
 		return (0);
 	tmp = *stack;
 	i = 0;
@@ -46,6 +59,8 @@ int	ft_median(t_list **stack, int size)
 		tmp = tmp->next;
 		i++;
 	}
-	med = ft_med(&nbrs[0], size);
+	nbrs = ft_sort_nbrs(&nbrs[0], size);
+	med = nbrs[size/2];
+	free(nbrs);
 	return (med);
 }

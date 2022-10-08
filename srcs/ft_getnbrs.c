@@ -12,12 +12,12 @@
 
 #include "../include/push_swap.h"
 
-void    ft_error(int *nbr, int i)
+void	ft_error(int *nbr, int i)
 {
-    while (--i >= 0)
-        nbr[i] = 0;
-    printf ("Error\n");
-    exit(0);
+	while (--i >= 0)
+		nbr[i] = 0;
+	printf ("Error\n");
+	exit(0);
 }
 
 int	ft_duplicated(int *nbrs, int size)
@@ -40,28 +40,28 @@ int	ft_duplicated(int *nbrs, int size)
 	return (0);
 }
 
-void    ft_joinall(char **argv, int *nbrs, int *size)
+void	ft_joinall(char **argv, int *nbrs, int *size)
 {
-    int i;
-	int	line;
 	long long	nb;
-    
+	int			i;
+	int			line;
+
 	i = 0;
 	line = 0;
 	if (!argv || !*argv)
-        return ;
-    while (argv[i])
-    {
-        if (ft_isalpha(argv[i][0]))
-            ft_error(nbrs, line);
-        nb = ft_atoi2(argv[i]);
-        if (nb > 2147483647 || nb < -2147483648)
-            ft_error(nbrs, line);
-        nbrs[line] = (int)nb;
-        i++;
+		return ;
+	while (argv[i])
+	{
+		if (ft_isalpha(argv[i][0]))
+			ft_error(nbrs, line);
+		nb = ft_atoi2(argv[i]);
+		if (nb > 2147483647 || nb < -2147483648)
+			ft_error(nbrs, line);
+		nbrs[line] = (int)nb;
+		i++;
 		line++;
-    }
+	}
 	*size = line;
-    if (ft_duplicated(nbrs, line))
-        ft_error(nbrs, line);
+	if (ft_duplicated(nbrs, line))
+		ft_error(nbrs, line);
 }
