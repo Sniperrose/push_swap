@@ -2,6 +2,7 @@ NAME = push_swap
 
 SRCS =	srcs/main.c\
 		srcs/ft_atoi2.c\
+		srcs/ft_joinall.c\
 		srcs/ft_getnbrs.c\
 		srcs/push_swap.c\
 		srcs/ft_median.c\

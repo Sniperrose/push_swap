@@ -20,6 +20,8 @@
 int		ft_isalpha(char c);
 int		ft_isdigit(char c);
 size_t	ft_strlen(const char *c);
+char    *ft_strdup(char const *argv);
+char    *ft_strjoin(char *all, char const *argv);
 void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *s, int fd);
 

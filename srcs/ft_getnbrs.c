@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_getnbrs.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: galtange <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -40,73 +40,42 @@ int	ft_duplicated(int *nbrs, int size)
 	return (0);
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
+size_t	ft_count(const char *all, char sep)
 {
-	char	*str;
-	size_t	i;
-	size_t	len;
-
-	if (!s1)
-		str = malloc((ft_strlen(s2) + 1) * sizeof(char));
-	else
-		str = malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
-	if (str == NULL)
+	int		i;
+	size_t	line;
+	
+	if (!all)
 		return (0);
 	i = 0;
-	while (s1[i] != '\0')
+	line = 0;
+	while (*all != '\0' && *all == sep)
+		all++;
+	while (*all != '\0')
 	{
-		str[i] = s1[i];
-		i++;
+		if (*all != sep && i == 0)
+		{
+			line++;
+			i = 1;
+		}
+		if (i == 1 && *all == sep)
+			i = 0;
+		all++;
 	}
-	len = 0;
-	while (s2[len] != '\0')
-	{
-		str[i + len] = s2[len];
-		len++;
-	}
-	str[i + len] = '\0';
-	return (str);
+	return (line);
 }
 
-char	*ft_strdup(const char *s)
+
+size_t	ft_getnumbers(const char *all)
 {
-	char	*dup;
-	char	*str;
-	int		i;
+	// size_t	size;
+	// size_t	i;
+	size_t	ch;
 
-	str = (char *)s;
-	i = 0;
-	dup = malloc((ft_strlen(s) + 1) * sizeof(char));
-	if (dup == NULL)
-		return (NULL);
-	while (str[i] != '\0')
-	{
-		dup[i] = str[i];
-		i++;
-	}
-	dup[i] = '\0';
-	return (dup);
-}
-
-int	*ft_joinall(char **argv, int *size)
-{
-	char	*all;
-	int		*nbrs = NULL;
-	int		i = 0;
-
-	if (!argv || !*argv)
-		return (NULL);
-	all = ft_strdup(argv[i]);
 	if (!all)
-		return (NULL);
-	i++;
-	while (argv[i])
-	{
-		all = ft_strjoin(all, argv[i]);
-		i++;
-	}
-	nbrs[0] = ft_atoi2(all);
-	*size = i;
-	free (all);
-	return(&nbrs[0]);
+		return (0);
+	result = NULL;
+	ch = ft_count(all, ' ');
+
+	return (ch);
 }
