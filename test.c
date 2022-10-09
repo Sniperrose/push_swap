@@ -2,7 +2,11 @@
 #include <unistd.h>
 #include <stdlib.h>
 
+<<<<<<< HEAD
 size_t     ft_strlen(char const *str)
+=======
+int     ft_strlen(char const *str)
+>>>>>>> 9892242535dd60c338535267b1c637782c2c66d8
 {
         int     i;
 
@@ -14,6 +18,7 @@ size_t     ft_strlen(char const *str)
         return (i);
 }
 
+<<<<<<< HEAD
 
 size_t	counting_c(const char *s, char c)
 {
@@ -110,6 +115,8 @@ char	**ft_split(char const *s, char c)
 	return (result);
 }
 
+=======
+>>>>>>> 9892242535dd60c338535267b1c637782c2c66d8
 char    *ft_strjoin(char *all, char const *argv)
 {
         char    *str;
@@ -186,6 +193,10 @@ char    *ft_strdup(char const *argv)
 char    *ft_joinall(char *str, char const *argv)
 {
         char    *all;
+<<<<<<< HEAD
+=======
+//      int     i;
+>>>>>>> 9892242535dd60c338535267b1c637782c2c66d8
 
         if (!argv)
                 return (NULL);
@@ -197,6 +208,23 @@ char    *ft_joinall(char *str, char const *argv)
                         return(NULL);
                 return (all);
         }
+<<<<<<< HEAD
+=======
+/*      {
+                i = 0;
+                all = malloc((ft_strlen(argv) + 2) * sizeof(char));
+                if (!all)
+                        return (NULL);
+                while (argv[i] != '\0')
+                {
+                        all[i] = argv[i];
+                        i++;
+                }
+                all[i++] = ' ';
+                all[i] = '\0';
+                return (all);
+        }*/
+>>>>>>> 9892242535dd60c338535267b1c637782c2c66d8
         else
         {
                 str = ft_separate(str);
@@ -206,7 +234,10 @@ char    *ft_joinall(char *str, char const *argv)
                 if (!all)
                         return (NULL);
         }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 9892242535dd60c338535267b1c637782c2c66d8
         return (all);
 }
 /*
@@ -214,6 +245,10 @@ char    *ft_getnumbers(char **argv, int *size)
 {
         int     i;
         char    *all;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 9892242535dd60c338535267b1c637782c2c66d8
         if (!argv || !*argv)
                 return (NULL);
         i = 0;
@@ -237,16 +272,25 @@ int     *ft_getvalue(char **split, int *size)
         int     *nbrs;
 
         if (!split || !*split)
+<<<<<<< HEAD
                 return (NULL);
         nbrs = malloc(*size * sizeof(int));
         if (!nbrs)
         {
                 ft_free(split, *size);
+=======
+                return [NULL];
+        nbrs = malloc(size * sizeof(int));
+        if (!nbrs)
+        {
+                ft_free(split, size);
+>>>>>>> 9892242535dd60c338535267b1c637782c2c66d8
                 return (NULL);
         }
         i = 0;
         while (split[i] != NULL)
         {
+<<<<<<< HEAD
                 nb = atoi(split[i]);
                 nbrs[i] = nb;
                 i++;
@@ -271,15 +315,62 @@ void     ft_getnumbers(char *all)
                 i++;
         }
         ft_free(result, i);
+=======
+                if (ft_isascii(split[i][0]))
+                {
+                        ft_error(nbrs, split, size);
+                        return (NULL);
+                }
+                nb = ft_atoi2(split[i]);
+                if (min max s ih bol)
+                {
+                        ft_error(nbrs, split, size);
+                        return (NULL);
+                }
+                nbrs[i] = nb;
+                i++;
+        }
+        ft_free(split, size);
+        return (nbrs);
+}
+int     *ft_getnumbers(char *all, int *size)
+{
+        int     *nbrs;
+        char    **split;
+
+        if (!all)
+                return (NULL);
+        split = ft_split(all, " ", size);
+        if (!split)
+        {
+                free(all);
+                return (NULL);
+        }
+        nbrs = ft_getvalue(split, size);
+        if (!nbrs)
+        {
+                ft_free(split, size);
+                return (NULL);
+        }
+        ft_free(split, size);
+        return (nbrs);
+>>>>>>> 9892242535dd60c338535267b1c637782c2c66d8
 }
 int main (int argc, char **argv)
 {
         char    *all;
+<<<<<<< HEAD
         // int     *nbrs;
         int     size;
 
         all = NULL;
         // nbrs = NULL;
+=======
+        int     *nbrs;
+        int     size;
+
+        nbrs = NULL;
+>>>>>>> 9892242535dd60c338535267b1c637782c2c66d8
         size = 1;
         if (argc <= 0)
                 return (0);
@@ -288,6 +379,7 @@ int main (int argc, char **argv)
                 all = ft_joinall(all, argv[size]);
                 size++;
         }
+<<<<<<< HEAD
         ft_getnumbers(all);
         // nbrs = ft_getnumbers(all, &size);
         printf("size = %d\nall = %s\n", size, all);
@@ -444,3 +536,12 @@ size_t	ft_getnumbers(const char *all)
 	ft_free(result, ch);
 	return (ch);
 }
+=======
+        nbrs = ft_getnumbers(all, &size);
+        ft_printf(nbrs, size);
+        printf("size = %d\nall = %s\n", size, nbrs);
+        free(all);
+        free(nbrs);
+        return (0);
+}
+>>>>>>> 9892242535dd60c338535267b1c637782c2c66d8
