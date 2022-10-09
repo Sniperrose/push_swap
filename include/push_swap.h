@@ -20,12 +20,21 @@ char    *ft_joinall(char *str, char const *argv);
 char    *ft_strjoin(char *all, char const *argv);
 char    *ft_strdup(char const *argv);
 
-size_t	ft_getnumbers(const char *all);
+
 
 int	ft_duplicated(int *nbrs, int size);
-void    ft_error(int *nbr, int i);
+void	ft_error(char **str, int *nbr);
+size_t	ft_splitsize(char **str);
+void	ft_free(char **str, size_t line);
+
 void	ft_putstr_fd(char *s, int fd);
 void	ft_putchar_fd(char c, int fd);
+size_t	ft_count(const char *all, char sep);
+char	*ft_substr(char const *s, unsigned int start, size_t len);
+void	ft_split(char **result, char const *all, char sep, size_t size);
+
+int	*ft_getnumbers(char *all, int *size);
+
 void    ft_pushswap(int *nbrs, int size);
 void    display(t_list *list);
 t_list	*ft_lstnew(int content);

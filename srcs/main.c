@@ -20,8 +20,8 @@ int main (int argc, char **argv)
         int     size;
 		int		*nbrs;
 
-		nbrs = NULL;
         all = NULL;
+        nbrs = NULL;
 		size = 1;
         if (argc <= 0)
                 return (0);
@@ -30,10 +30,14 @@ int main (int argc, char **argv)
                 all = ft_joinall(all, argv[size]);
                 size++;
         }
-        size =  ft_getnumbers(all);
-        printf("size = %d\nall = %s\n", size, all);
+        nbrs =  ft_getnumbers(all, &size);
+        if (!nbrs)
+        {
+            free(all);
+            return (0);
+        }
         free(all);
-		free(nbrs);
+        free(nbrs);
         return (0);
 }
 

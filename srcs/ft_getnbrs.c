@@ -12,10 +12,10 @@
 
 #include "../include/push_swap.h"
 
-void	ft_error(int *nbr, int i)
+void	ft_error(char **str, int *nbr)
 {
-	while (--i >= 0)
-		nbr[i] = 0;
+	ft_free(str, ft_splitsize(str));
+	free(nbr);
 	printf ("error\n");
 	exit(0);
 }
@@ -40,42 +40,71 @@ int	ft_duplicated(int *nbrs, int size)
 	return (0);
 }
 
-size_t	ft_count(const char *all, char sep)
+size_t	ft_splitsize(char **str)
 {
-	int		i;
-	size_t	line;
-	
-	if (!all)
+	size_t	i;
+
+	if (!str)
 		return (0);
 	i = 0;
-	line = 0;
-	while (*all != '\0' && *all == sep)
-		all++;
-	while (*all != '\0')
-	{
-		if (*all != sep && i == 0)
-		{
-			line++;
-			i = 1;
-		}
-		if (i == 1 && *all == sep)
-			i = 0;
-		all++;
-	}
-	return (line);
+	while (str[i] != NULL)
+			i++;
+	return (i);
 }
 
-
-size_t	ft_getnumbers(const char *all)
+void	ft_char2int(char **result, int *nbrs, int *size)
 {
-	// size_t	size;
-	// size_t	i;
-	size_t	ch;
+	long long	nb;
+	int			i;
+	int			line;
+
+	if (!result || !*result)
+		return ;
+	i = 0;
+	line = 0;
+	while(result[i] != NULL)
+	{
+		if (ft_isalpha(result[i][0]))
+			ft_error(result, nbrs);
+		nb = ft_atoi2(result[i]);
+		if (nb > 2147483647 || nb < -2147483648)
+			ft_error(result, nbrs);
+		nbrs[line] = (int)nb;
+		i++;
+		line++;
+	}
+	*size = line;
+	if (ft_duplicated(nbrs, line))
+		ft_error(result, nbrs);
+}
+
+int	*ft_getnumbers(char *all, int *size)
+{
+	size_t	i;
+	int		*nbrs;
+	char	**result;
 
 	if (!all)
 		return (0);
-	result = NULL;
-	ch = ft_count(all, ' ');
-
-	return (ch);
+	result = (char **)malloc((ft_count(all, ' ') + 1) * sizeof(char *));
+	if (!result)
+		return (0);
+	ft_split(result, all, ' ', ft_count(all, ' ') + 1);
+	if (!result)
+		return (0);
+	i = ft_splitsize(result);
+	nbrs = malloc(i * sizeof(int));
+	if (!nbrs)
+	{
+		ft_free(result, i);
+		return (0);
+	}
+	ft_char2int(result, nbrs, size);
+	if (!nbrs)
+	{
+		ft_free(result, i);
+		return (NULL);
+	}
+	ft_free(result, i);
+	return (nbrs);
 }
