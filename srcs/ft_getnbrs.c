@@ -12,14 +12,6 @@
 
 #include "../include/push_swap.h"
 
-void	ft_error(char **str, int *nbr)
-{
-	ft_free(str, ft_splitsize(str));
-	free(nbr);
-	printf ("error\n");
-	exit(0);
-}
-
 int	ft_duplicated(int *nbrs, int size)
 {
 	int	i;
@@ -52,35 +44,43 @@ size_t	ft_splitsize(char **str)
 	return (i);
 }
 
-void	ft_char2int(char **result, int *nbrs, int *size)
+int	 ft_char2int(char **result, int *nbrs)
 {
 	long long	nb;
 	int			i;
 	int			line;
 
 	if (!result || !*result)
-		return ;
+		return (0);
 	i = 0;
 	line = 0;
 	while(result[i] != NULL)
 	{
 		if (ft_isalpha(result[i][0]))
-			ft_error(result, nbrs);
+		{	
+			write (1, "Error momomo\n", 6);
+			return (0);
+		}
 		nb = ft_atoi2(result[i]);
 		if (nb > 2147483647 || nb < -2147483648)
-			ft_error(result, nbrs);
+		{
+			write (1, "Error lalalal\n", 6);
+			return (0);
+		}
 		nbrs[line] = (int)nb;
 		i++;
 		line++;
 	}
-	*size = line;
 	if (ft_duplicated(nbrs, line))
-		ft_error(result, nbrs);
+	{
+		write (1, "Error dududud\n", 6);
+		return (0);
+	}
+	return (line);
 }
 
 int	*ft_getnumbers(char *all, int *size)
 {
-	size_t	i;
 	int		*nbrs;
 	char	**result;
 
@@ -92,19 +92,18 @@ int	*ft_getnumbers(char *all, int *size)
 	ft_split(result, all, ' ', ft_count(all, ' ') + 1);
 	if (!result)
 		return (0);
-	i = ft_splitsize(result);
-	nbrs = malloc(i * sizeof(int));
+	nbrs = malloc(ft_splitsize(result) * sizeof(int));
 	if (!nbrs)
 	{
-		ft_free(result, i);
-		return (0);
-	}
-	ft_char2int(result, nbrs, size);
-	if (!nbrs)
-	{
-		ft_free(result, i);
+		ft_free(result, ft_splitsize(result));
 		return (NULL);
 	}
-	ft_free(result, i);
+	*size = ft_char2int(result, nbrs);
+	if (!nbrs || !size)
+	{
+		ft_free(result, ft_splitsize(result));
+		return (NULL);
+	}
+	ft_free(result, ft_splitsize(result));
 	return (nbrs);
 }

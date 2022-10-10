@@ -24,17 +24,18 @@ t_list	*ft_lstnew(int content)
 	return (newnode);
 }
 
-void	ft_lstadd_front(t_list **lst, t_list *new)
+int	ft_lstadd_front(t_list **lst, t_list *new)
 {
 	if (!*lst)
 	{
 		*lst = new;
-		return ;
+		return (1);
 	}
 	if (!new)
-		return ;
+		return (0);
 	new->next = *lst;
 	*lst = new;
+	return (1);
 }
 
 int	ft_lstsize(t_list *lst)
@@ -54,6 +55,22 @@ int	ft_lstsize(t_list *lst)
 	return (size);
 }
 
+void	free_stack(t_list **list)
+{
+	t_list	*tmp;
+
+	if (!*list || !list)
+	{
+		return ;
+	}
+	while (*list != NULL)
+	{
+		tmp = (*list)->next;
+		free(*list);
+		*list = tmp;
+	}
+}
+
 void	display(t_list *list)
 {
 	t_list	*tmp;
@@ -70,18 +87,3 @@ void	display(t_list *list)
 	printf("NULL\n");
 }
 
-void	free_stack(t_list **list)
-{
-	t_list	*tmp;
-
-	if (!*list || !list)
-	{
-		return ;
-	}
-	while (*list != NULL)
-	{
-		tmp = (*list)->next;
-		free(*list);
-		*list = tmp;
-	}
-}

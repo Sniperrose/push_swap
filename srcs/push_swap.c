@@ -21,7 +21,9 @@ t_list	*ft_newstack(int *nbrs, int size)
 	stack = NULL;
 	while (--i >= 0)
 	{
-		ft_lstadd_front(&stack, ft_lstnew(nbrs[i]));
+		if (!ft_lstadd_front(&stack, ft_lstnew(nbrs[i])))
+			return (NULL);
+
 	}
 	if (!stack)
 		return (NULL);
@@ -35,13 +37,10 @@ void	ft_pushswap(int	*nbrs, int size)
 
 	stack_a = ft_newstack(nbrs, size);
 	if (!stack_a)
-		return;
+		return ;
 	stack_b = NULL;
 	if (ft_alreadysorted(&stack_a) == 1)
-	{
-		printf("sorted!\n");
-		return;
-	}
+		return ;
 	else if (size == 2)
 		ft_sa(&stack_a);
 	else if (size == 3)
@@ -54,11 +53,6 @@ void	ft_pushswap(int	*nbrs, int size)
 		ft_sort(&stack_a, &stack_b, ft_median(&stack_a, size));
 	else
 		ft_sort_big(&stack_a, &stack_b);
-
-			// printf("stack_a: ");		
-			// 	display(stack_a);
-			// printf("stack_b: ");	
-			// 	display(stack_b);
 	free_stack(&stack_a);
 	free_stack(&stack_b);
 }

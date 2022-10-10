@@ -23,7 +23,6 @@ char    *ft_strdup(char const *argv);
 
 
 int	ft_duplicated(int *nbrs, int size);
-void	ft_error(char **str, int *nbr);
 size_t	ft_splitsize(char **str);
 void	ft_free(char **str, size_t line);
 
@@ -35,11 +34,11 @@ void	ft_split(char **result, char const *all, char sep, size_t size);
 
 int	*ft_getnumbers(char *all, int *size);
 
-void    ft_pushswap(int *nbrs, int size);
+void	ft_pushswap(int	*nbrs, int size);
 void    display(t_list *list);
 t_list	*ft_lstnew(int content);
 t_list	*ft_newstack(int *nbrs, int size);
-void	ft_lstadd_front(t_list **lst, t_list *new);
+int	ft_lstadd_front(t_list **lst, t_list *new);
 int	ft_lstsize(t_list *lst);
 void	free_stack(t_list **list);
 void    ft_swap(t_list **list);

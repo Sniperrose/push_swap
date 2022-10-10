@@ -23,7 +23,7 @@ int main (int argc, char **argv)
         all = NULL;
         nbrs = NULL;
 		size = 1;
-        if (argc <= 0)
+        if (argc <= 1)
                 return (0);
         while (size < argc)
         {
@@ -36,6 +36,7 @@ int main (int argc, char **argv)
             free(all);
             return (0);
         }
+        ft_pushswap(nbrs, size);
         free(all);
         free(nbrs);
         return (0);

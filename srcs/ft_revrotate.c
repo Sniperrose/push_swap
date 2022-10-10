@@ -37,7 +37,7 @@ void	ft_rra(t_list **stack_a)
 		return ;
 	ft_revrotate(stack_a);
 	ft_putstr_fd("rra\n", 1);
-	g_cntr++;
+	// g_cntr++;
 }
 
 void	ft_rrb(t_list **stack_b)
@@ -46,7 +46,7 @@ void	ft_rrb(t_list **stack_b)
 		return ;
 	ft_revrotate(stack_b);
 	ft_putstr_fd("rrb\n", 1);
-	g_cntr++;
+	// g_cntr++;
 }
 
 void	ft_rrr(t_list **stack_a, t_list **stack_b)
@@ -56,5 +56,5 @@ void	ft_rrr(t_list **stack_a, t_list **stack_b)
 	ft_revrotate(stack_a);
 	ft_revrotate(stack_b);
 	ft_putstr_fd("rrr\n", 1);
-	g_cntr++;
+	// g_cntr++;
 }

@@ -71,6 +71,8 @@ void	ft_split(char **result, char const *all, char sep, size_t size)
 			return ;
 		}
 		i = i + ft_end(&all[i], sep);
+		while (all[i] == sep)
+			i++;
 		line++;
 	}
 	result[line] = NULL;
